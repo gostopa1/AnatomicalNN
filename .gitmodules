@@ -1,0 +1,3 @@
+[submodule "DeepNNs"]
+	path = DeepNNs
+	url = https://github.com/gostopa1/DeepNNs.git
