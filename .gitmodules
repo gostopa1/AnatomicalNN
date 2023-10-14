@@ -1,3 +1,6 @@
 [submodule "DeepNNs"]
 	path = DeepNNs
 	url = https://github.com/gostopa1/DeepNNs.git
+[submodule "SLURM_parallelizing"]
+	path = SLURM_parallelizing
+	url = https://github.com/gostopa1/SLURM_parallelizing.git
