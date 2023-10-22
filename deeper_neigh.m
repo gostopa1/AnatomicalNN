@@ -31,7 +31,7 @@ direxist=0;
 
 while direxist==0
     ID=randi(100000000000);
-    result_dir=['./results/N' num2str(convradius) '/N' num2str(convradius) '_' mms '_' num2str(perm) '_sub' num2str(subi) '_epochs' num2str(model.epochs) '_' sprintf('lr%2.3f',model.layers(1).lr) '/rep'  num2str(ID) '/'];
+    result_dir=['./results/N' num2str(convradius) '/N' num2str(convradius) '_' mms '_' num2str(perm) '_sub' num2str(subi) '/rep'  num2str(ID) '/'];
     if (isdir(result_dir)==1)
         ID=randi(100000000000);
     else
