@@ -1,7 +1,7 @@
 tic
 
 if ~exist('readAll')
-    readAll=1;
+    readAll=0;
 end
 
 %readAll=0; % To read data of individual subjects instead of reading the one big matrix that contains all the data
@@ -33,6 +33,11 @@ if ~exist('perm')
     perm=0;
 end
 
+if ~exist('perm')
+    merge_right_left=1;
+end
+
+
 %% Initializing some variables before loading the data
 nosubs=6;
 x_test=[]; x=[]; y=[]; y_test=[];
@@ -40,9 +45,9 @@ x_test=[]; x=[]; y=[]; y_test=[];
 %% To read the data from one big matrix (readAll=1) or from data of inidividual subjects (readAll=0). The latter is faster
 if readAll==1
     tps=1:5;
-    load(['../../Haxby_preprocessing/data/Haxby_' mms '.mat']);
+    load(['../Haxby_preprocessing/data/Haxby_' mms '.mat']);
     D=mean(D(:,:,:,:,:,tps),6);
-    %D=D/max(abs(D(:)));
+    %D=D/max(abs(D(:))); % if needed to normalize the data
 
     s=size(D);
     subinds=setxor(subi,1:nosubs);
@@ -100,7 +105,7 @@ load(['../../whole_brain_masks/distance' num2str(convradius) '_weights_' mms '.m
 W_conv=(single(W));
 
 %% Read weights atlas for regions layer
-merge_right_left=0
+
 if merge_right_left==1
     load(['../../whole_brain_masks/anatomical_weights_both_' mms '.mat'])
 else
