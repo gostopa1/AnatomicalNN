@@ -1,16 +1,10 @@
 %% Training and importance extraction
 
-%clear x y
-%clear x_test y_test
 clear D_test D_train
 clear W_conv W_regions W
 
-
-model.optimizer='ADAM'; % Options: SGD, SGD_m, RMSprop_m
-
 tic 
-[~,model]=model_train_lowmem(model);
-%[~,model]=model_train(model);
+[model,~]=model_train(model);
 toc
 [model,out_test]=forwardpassing(model,[model.x_test]); perf=get_perf(out_test,model.y_test);
 conf=get_conf(out_test,model.y_test);
@@ -44,10 +38,7 @@ end
 %%
 if imp_calc
 display('Extracting importances')
-%[~,imp]=extract_LRPWX(model,model.x_test);
-%[~,imp]=extract_LRP(model,model.x_test);
 [~,imp]=extract_LRP_lowmem(model,model.x_test);
-%[~,imp]=extract_LRPWX_lowmem(model,model.x_test);
 
 for layeri=1:length(model.layers)
     imp(layeri).R=mean(imp(layeri).R,3);
