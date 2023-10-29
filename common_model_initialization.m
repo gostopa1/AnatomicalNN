@@ -21,12 +21,11 @@ model.l2=0;
 noins=size(x,2);
 noouts=size(y,2);
 lr=0.001; activation='tanhact';
+model.optimizer='ADAM'; % Options: SGD, SGD_m, RMSprop_m
 
 model.errofun='cross_entropy_cost'; % Options: 'quadratic_cost'
-
-
+        
 for layeri=1:(length(layers)-1)
-    
     model.layers(layeri).activation=activation;
     model.layers(layeri).lr=lr;
     model.layers(layeri).blr=lr;
