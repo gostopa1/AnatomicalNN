@@ -1,30 +1,26 @@
 %% Add paths and start measuring time
 addPaths
-
 tic
+
 %% Load Haxby dataset
-
-merge_right_left=0;
 haxby_dataset;
-%%
+
+%% Set up model
 clear model
-
 layers=[noins size(W_regions,2) noouts];
-
 common_model_initialization
+
 model.layers(1).W=W_regions;
 model.layers(1).lr=regionlr;
 
 layeri=2;
 model.layers(layeri).W=single((randn(layers(layeri),layers(layeri+1)))*sqrt(2/(model.layersizes(layeri)/nocats+model.layersizes(layeri+1))));
 maskW=model.layers(layeri).W*0; for i=1:nocats, maskW((1:num_regions)+(i-1)*num_regions,i)=1; end; model.layers(layeri).W=model.layers(layeri).W.*maskW;
-%% Training and importance extraction
 
+%% Training and importance extraction
 training_and_importance_extraction
 
-
 %% Saving section
-
 ID=randi(100000000000);
 time_elapsed=toc
 direxist=0;
@@ -45,7 +41,6 @@ if imp_calc
     save([ result_dir 'impos.mat'],'imp');
 end
 
-
 save([ result_dir 'overfitting.mat'],'figure_error_test',"figure_error_train","figure_perf_test","figure_perf_train","figure_iters");
 
 save([ result_dir 'perf.mat'],'perf');
@@ -53,4 +48,3 @@ save([ result_dir 'time_elapsed.mat'],'time_elapsed');
 
 save([ result_dir 'conf.mat'],'conf');
 save([ result_dir 'regionlr.mat'],'regionlr');
-

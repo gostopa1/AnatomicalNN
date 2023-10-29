@@ -1,29 +1,19 @@
 %% Add paths and start measuring time
 addPaths
-
 tic
+
 %% Load Haxby dataset
+haxby_dataset;    
 
-merge_right_left=0;
-if (exist('x') && exist('y') && exist('x_test') && exist('y_test'))
-    disp("Data loaded already, no need to load again")
-else
-    haxby_dataset;    
-end
-
-%%
-
+%% Set up model
+clear model
 layers=[noins noouts];
-
 common_model_initialization
 
-
 %% Training and importance extraction
-
 training_and_importance_extraction
 
 %% Saving section
-
 ID=randi(100000000000);
 time_elapsed=toc;
 direxist=0;

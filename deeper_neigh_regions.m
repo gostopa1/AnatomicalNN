@@ -1,13 +1,11 @@
 %% Add paths and start measuring time
 addPaths
-
 tic
-%% Load Haxby dataset
 
-merge_right_left=0;
+%% Load Haxby dataset
 haxby_dataset;
 
-%%
+%% Set up model
 clear model
 
 layers=[noins noins size(W_regions,2) noouts];
@@ -24,12 +22,9 @@ model.layers(layeri).W=single((randn(layers(layeri),layers(layeri+1)))*sqrt(2/(m
 maskW=model.layers(layeri).W*0; for i=1:nocats, maskW((1:num_regions)+(i-1)*num_regions,i)=1; end; model.layers(layeri).W=model.layers(layeri).W.*maskW;
 
 %% Training and importance extraction
-
 training_and_importance_extraction
 
-
 %% Saving section
-
 ID=randi(100000000000);
 time_elapsed=toc
 
