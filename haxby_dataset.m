@@ -82,11 +82,11 @@ if readAll==1
 else
     subinds=setxor(subi,1:nosubs);
     for sub=subinds
-        data = load(['../../Haxby_preprocessing/data/IndividualSubjects/' mms '_sub' num2str(sub) '.mat']);
+        data = load(['../Haxby_preprocessing/data/IndividualSubjects/' mms '_sub' num2str(sub) '.mat']);
         x=[x ; data.x];
         y=[y ; data.y];
     end
-    data_test = load(['../../Haxby_preprocessing/data/IndividualSubjects/' mms '_sub' num2str(subi) '.mat']);
+    data_test = load(['../Haxby_preprocessing/data/IndividualSubjects/' mms '_sub' num2str(subi) '.mat']);
     x_test = data_test.x;
     y_test = data_test.y;
     nocats = size(y_test,2);
@@ -101,15 +101,15 @@ noouts=size(y,2);
 display('Data read!')
 
 %% Read weights for neighborhood layer
-load(['../../whole_brain_masks/distance' num2str(convradius) '_weights_' mms '.mat'])
+load(['../Haxby_preprocessing/whole_brain_masks/distance' num2str(convradius) '_weights_' mms '.mat'])
 W_conv=(single(W));
 
 %% Read weights atlas for regions layer
 
 if merge_right_left==1
-    load(['../../whole_brain_masks/anatomical_weights_both_' mms '.mat'])
+    load(['../Haxby_preprocessing/whole_brain_masks/anatomical_weights_both_' mms '.mat'])
 else
-    load(['../../whole_brain_masks/anatomical_weights_both_' mms '_all.mat'])
+    load(['../Haxby_preprocessing/whole_brain_masks/anatomical_weights_both_' mms '_all.mat'])
 
 end
 W_regions=(single(W));
