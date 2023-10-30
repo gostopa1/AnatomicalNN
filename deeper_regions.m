@@ -47,4 +47,3 @@ save([ result_dir 'perf.mat'],'perf');
 save([ result_dir 'time_elapsed.mat'],'time_elapsed');
 
 save([ result_dir 'conf.mat'],'conf');
-save([ result_dir 'regionlr.mat'],'regionlr');
