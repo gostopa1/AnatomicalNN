@@ -33,7 +33,7 @@ if ~exist('perm')
     perm=0;
 end
 
-if ~exist('perm')
+if ~exist('merge_right_left')
     merge_right_left=1;
 end
 
